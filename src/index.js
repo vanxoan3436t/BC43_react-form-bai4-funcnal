@@ -1,17 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+
+import { Provider } from 'react-redux';
+import { stote } from './redux/configStote';
+import FormNhanVien from './ReactFormRedux/FormNhanVien';
+
+
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+    
+    <Provider store={stote}>
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+<FormNhanVien/>
+      
+    </Provider>
+
+);
+// npx i @reduxjs/toolkit
+// npx i react-redux
+// npx create-react-app
