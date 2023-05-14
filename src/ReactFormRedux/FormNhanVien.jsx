@@ -27,10 +27,12 @@ const FormNhanVien = () => {
 
     }
     //phần code nút xoá
-    const handleDelete = (maSVDel) => {
-        dispatch(deleteSV({ maSV}))
-   console.log('maSV',maSV )
+    const handleDelete = (maSV) => {
+         dispatch(deleteSV({  maSV: maSV }))
+        // console.log('maSV', maSV)
     }
+
+    // phần nút chỉnh sửa 
     return (
         <div className='container'>
             <form onSubmit={handleSubmit}>
@@ -85,8 +87,8 @@ const FormNhanVien = () => {
                             <td>{obSV.sdt}</td>
                             <td>{obSV.email}</td>
                             <td className='text-center'>
-                                <button className='btn btn-danger me-2'  onClick={() => {
-                                    handleDelete();
+                                <button className='btn btn-danger me-2' onClick={() => {
+                                    handleDelete(obSV.maSV);
 
                                 }}>X</button>
                                 <button className='btn btn-primary '><i class="fa fa-edit"></i></button>
