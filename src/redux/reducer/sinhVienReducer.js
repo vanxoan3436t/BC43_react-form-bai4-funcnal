@@ -17,16 +17,18 @@ const sinhVienReducer = createSlice({
 
     },
     deleteSV: (state, action) => {
-      const id  = action.payload;
+      const id = action.payload;
       console.log('id', id)
-      // for (let i in state.arrSV) {
-      //   console.log('i.maSV', state.arrSV)
-      // }
-      // const idDel = state.sinhVienReducer.find(sinhVienReducer => sinhVienReducer.maSV == id);
-      // console.log('idDel', idDel)
-      // if (idDel) {
-      //   return state.sinhVienReducer.filter(i => i.maSV !== id);
-      // }
+      const idDel = state.arrSV.findIndex(arrSV => arrSV.maSV === id);
+      console.log('idDel', idDel);
+      if (idDel) {
+
+        return state.arrSV.filter(i => i.id !== id)
+
+      }
+
+
+      //useState 
 
     }
 

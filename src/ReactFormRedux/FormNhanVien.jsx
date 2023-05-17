@@ -18,14 +18,15 @@ const FormNhanVien = () => {
 
 
     const handleSubmit = (event) => {
-        event.preventDefault();// lỗi này em quên cách debug rồi : hình như nó ngăn render 
+        event.preventDefault();// 
         //Cannot read properties of undefined (reading 'preventDefault')
         //TypeError: Cannot read properties of undefined (reading 'preventDefault')
         dispatch(addSV({ maSV, sdt, hoTen, email }))
         //lưu vào local
-        saveStorageJSON('arrSinhVien', arrSV);// méo hoạt động
+        // saveStorageJSON('arrSinhVien', [{ maSV, sdt, hoTen, email }]);// méo hoạt động
 
     }
+
     //phần code nút xoá
     const handleDelete = (maSV) => {
          dispatch(deleteSV({  maSV: maSV }))
@@ -35,8 +36,16 @@ const FormNhanVien = () => {
     // phần nút chỉnh sửa 
     return (
         <div className='container'>
+            <div className='d-flex text-white bg-dark p-3 mt-3'>
+            <h2 className=''>Thông tin sinh viên</h2>
+            <div className="form-group">
+            <input id='seachSV' className='form-control w-100'/>
+            </div>
+           
+            </div>
+            
             <form onSubmit={handleSubmit}>
-                <h2 className='text-white bg-dark p-3 mt-3'>Thông tin sinh viên</h2>
+                
                 <div className="row">
                     <div className="col-6">
                         <div className="form-group">
