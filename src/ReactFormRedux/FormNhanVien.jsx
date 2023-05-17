@@ -19,11 +19,11 @@ const FormNhanVien = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();// 
-        //Cannot read properties of undefined (reading 'preventDefault')
-        //TypeError: Cannot read properties of undefined (reading 'preventDefault')
-        dispatch(addSV({ maSV, sdt, hoTen, email }))
+     
+        // dispatch(addSV({ maSV, sdt, hoTen, email })) phần em comment lại rồi đó
+        // phần trên để thêm sinh viên mà
         //lưu vào local
-        // saveStorageJSON('arrSinhVien', [{ maSV, sdt, hoTen, email }]);// méo hoạt động
+    
 
     }
 
@@ -34,6 +34,11 @@ const FormNhanVien = () => {
     }
 
     // phần nút chỉnh sửa 
+    const handleUpdate = (event) => {
+        event.preventDefault();// 
+     
+
+    }
     return (
         <div className='container'>
             <div className='d-flex text-white bg-dark p-3 mt-3'>

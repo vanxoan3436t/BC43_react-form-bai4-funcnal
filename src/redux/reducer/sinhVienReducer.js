@@ -16,10 +16,21 @@ const sinhVienReducer = createSlice({
       state.arrSV.push(action.payload)
 
     },
+    updateSV:(state ,action)=> {
+const {maSV , hoTen ,sdt,email} = action.payload;
+const udSV = state.arrSV.findIndex(arrSV => arrSV.maSV == maSV);
+if(udSV) {
+udSV.hoTen = hoTen;
+udSV.sdt = sdt;
+udSV.email = email;
+
+}
+
+    },
     deleteSV: (state, action) => {
       const id = action.payload;
       console.log('id', id)
-      const idDel = state.arrSV.findIndex(arrSV => arrSV.maSV === id);
+      const idDel = state.arrSV.findIndex(arrSV => arrSV.maSV == id);
       console.log('idDel', idDel);
       if (idDel) {
 
@@ -51,6 +62,6 @@ const sinhVienReducer = createSlice({
 
   }
 });
-export const { addSV, deleteSV, saveStorageJSON, getStorageJSON, clearStorage } = sinhVienReducer.actions
+export const { addSV,updateSV, deleteSV, saveStorageJSON, getStorageJSON, clearStorage } = sinhVienReducer.actions
 
 export default sinhVienReducer.reducer
