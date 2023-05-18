@@ -2,8 +2,8 @@ import React from 'react'
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { addSV, deleteSV, saveStorageJSON } from '../redux/reducer/sinhVienReducer';
-// import {useParams} from 'react-router-dom'
+import { addSV, deleteSV, saveStorageJSON, updateSV } from '../redux/reducer/sinhVienReducer';
+import { useParams } from 'react-router-dom'
 
 const FormNhanVien = () => {
 
@@ -19,38 +19,47 @@ const FormNhanVien = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();// 
-     
-        // dispatch(addSV({ maSV, sdt, hoTen, email })) phần em comment lại rồi đó
-        // phần trên để thêm sinh viên mà
+
+        dispatch(addSV({ maSV, sdt, hoTen, email }));
         //lưu vào local
-    
+
 
     }
 
     //phần code nút xoá
     const handleDelete = (maSV) => {
-         dispatch(deleteSV({  maSV: maSV }))
+        dispatch(deleteSV({ maSV: maSV }))
         // console.log('maSV', maSV)
     }
 
     // phần nút chỉnh sửa 
-    const handleUpdate = (event) => {
-        event.preventDefault();// 
-     
+    const { id } = useParams();
+    const exittingSV = arrSV.filter(f => f.id == id)
+    // const {maSV,hoTen,sdt,email} = exittingSV [0]
+
+    const handleUpdate = (maSV,  hoTen,sdt, email) => {
+        // event.preventDefault();// 
+
+        dispatch(updateSV({
+            maSV:maSV,  hoTen:hoTen,sdt:sdt, email:email
+
+        }));
 
     }
     return (
         <div className='container'>
-            <div className='d-flex text-white bg-dark p-3 mt-3'>
-            <h2 className=''>Thông tin sinh viên</h2>
-            <div className="form-group">
-            <input id='seachSV' className='form-control w-100'/>
+            <div className='d-flex justify-content-between text-white bg-dark p-3 mt-3 '>
+                <h2 className='me-5'>Thông tin sinh viên</h2>
+                <div className="form-group ">
+                    <input id='seachSV' className='form-control w-100' placeholder='Tìm kiếm sinh viên' />
+                </div>
+
             </div>
-           
-            </div>
-            
+
+
             <form onSubmit={handleSubmit}>
-                
+
+
                 <div className="row">
                     <div className="col-6">
                         <div className="form-group">
@@ -62,10 +71,7 @@ const FormNhanVien = () => {
                             <input type='number' name='phone' className='form-control' id='sdt' placeholder='Nhập số điện thoại' onInput={e => setPhone(e.target.value)} />
                         </div>
                         <div>
-                            <button type='submit' className='btn btn-success mt-3' onClick={() => {
-                                handleSubmit();
-
-                            }}>Thêm sinh viên</button>
+                            <button type='submit' className='btn btn-success mt-3'>Thêm sinh viên</button>
                         </div>
                     </div>
 
@@ -105,7 +111,10 @@ const FormNhanVien = () => {
                                     handleDelete(obSV.maSV);
 
                                 }}>X</button>
-                                <button className='btn btn-primary '><i class="fa fa-edit"></i></button>
+                                <button className='btn btn-primary ' onClick={() => {
+                                    handleUpdate(obSV.maSV, obSV.hoTen, obSV.sdt, obSV.email);
+
+                                }}><i class="fa fa-edit"></i></button>
                             </td>
                         </tr>
                     })}

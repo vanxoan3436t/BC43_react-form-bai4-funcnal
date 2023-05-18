@@ -16,31 +16,33 @@ const sinhVienReducer = createSlice({
       state.arrSV.push(action.payload)
 
     },
-    updateSV:(state ,action)=> {
-const {maSV , hoTen ,sdt,email} = action.payload;
-const udSV = state.arrSV.findIndex(arrSV => arrSV.maSV == maSV);
-if(udSV) {
-udSV.hoTen = hoTen;
-udSV.sdt = sdt;
-udSV.email = email;
+    updateSV: (state, action) => {
+      const {maSV, hoTen, sdt, email } = action.payload;
 
-}
+      const udSV = state.arrSV.findIndex(arrSV => arrSV.maSV === maSV);
+      // const 
+      console.log('udSV', udSV)
+      // console.log('action.payload.maSV', action.payload.maSV)
+
+      if (udSV ) {
+//         state.arrSV.maSV = maSV
+//         state.arrSV.hoTen = hoTen;
+//         state.arrSV.sdt = sdt;
+//         state.arrSV.email = email;
+// console.log('first', state.arrSV.maSV)
+      }
 
     },
     deleteSV: (state, action) => {
       const id = action.payload;
       console.log('id', id)
-      const idDel = state.arrSV.findIndex(arrSV => arrSV.maSV == id);
+      const idDel = state.arrSV.findIndex(arrSV => arrSV.maSV === id);
       console.log('idDel', idDel);
-      if (idDel) {
 
-        return state.arrSV.filter(i => i.id !== id)
-
+      if (idDel !== id) {
+        state.arrSV.splice(idDel, 1);
+        console.log('state.arrSV', state.arrSV)
       }
-
-
-      //useState 
-
     }
 
 
@@ -62,6 +64,6 @@ udSV.email = email;
 
   }
 });
-export const { addSV,updateSV, deleteSV, saveStorageJSON, getStorageJSON, clearStorage } = sinhVienReducer.actions
+export const { addSV, updateSV, deleteSV, saveStorageJSON, getStorageJSON, clearStorage } = sinhVienReducer.actions
 
 export default sinhVienReducer.reducer
